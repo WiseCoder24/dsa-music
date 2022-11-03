@@ -10,6 +10,7 @@ class Node{
     }
 };
 vector<string> recents;
+vector<string> songQueue;
 void addSong(Node* &root, string name){
     Node* n = new Node(name);
     if(root==NULL){
@@ -54,6 +55,24 @@ string showRecent(){
     return song;
 }
 
+void addInQueue(string song){
+    songQueue.push_back(song);
+    cout<<"song added in the queue"<<endl;
+}
+
+void displayQueue(){
+    for(auto i:songQueue){
+        cout<<i<<endl;
+    }
+}
+
+void removeFromQueue(string song){
+    vector<string>::iterator it;
+    it = remove(songQueue.begin(),songQueue.end(),song);
+    vector<string>::iterator it2;
+    cout<<"Song removed"<<endl;
+}
+
 void playSong(Node* root,string song){
     Node* temp = root;
     if(searchSong(root,song)){
@@ -85,4 +104,11 @@ int main(){
     playSong(root,"pal");
     cout<<"The recent song is : "<<showRecent()<<endl;
     cout<<"The recent song is : "<<showRecent()<<endl;
+
+    addInQueue("pal");
+    addInQueue("manohari");
+    addInQueue("abcd");
+    displayQueue();
+    removeFromQueue("pal");
+    displayQueue();
 }
